@@ -4,7 +4,7 @@ import './answersfile.dart';
 
 class quiz extends StatelessWidget {
   final List<Map<String, Object>> questions;
-  final Function answers;
+  final void Function() answers;
   final int question_index;
 
   quiz({

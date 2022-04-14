@@ -3,7 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 
 class Answers extends StatelessWidget {
-  final VoidCallback selecthandler;
+  final void Function() selecthandler;
   final String anstxt;
   Answers(this.selecthandler, this.anstxt);
   @override

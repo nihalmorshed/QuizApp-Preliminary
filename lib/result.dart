@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class result extends StatelessWidget {
   final int totalScore;
-  final VoidCallback resetHandler;
+  final Function() resetHandler;
   result(this.totalScore, this.resetHandler);
 
   String get resultphrase {

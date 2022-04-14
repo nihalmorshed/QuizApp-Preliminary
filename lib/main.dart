@@ -64,14 +64,8 @@ class _Myappstate extends State<MyApp> {
   void _answers(int score) {
     _totalscore += score;
     setState(() {
-      print('Answer chosen!');
       _updtqindex();
     });
-    if (_question_index < _questions.length) {
-      print('We have questions left');
-    } else {
-      print('We are out of questions');
-    }
   }
 
   @override
