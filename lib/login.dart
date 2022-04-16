@@ -17,6 +17,7 @@ class _loginregisterState extends State<loginregister> {
       builder: (context) => Scaffold(
         appBar: AppBar(
           centerTitle: true,
+          backgroundColor: Colors.teal,
           title: Text("Start Quiz"),
         ),
         body: Center(

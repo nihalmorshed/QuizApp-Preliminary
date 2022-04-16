@@ -18,6 +18,7 @@ class _registerState extends State<register> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Register'),
+        backgroundColor: Colors.teal,
         centerTitle: true,
       ),
       body: Padding(
