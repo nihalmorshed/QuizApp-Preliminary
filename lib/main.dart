@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/result.dart';
-import 'questionsfile.dart';
-import 'answersfile.dart';
+import './questionsfile.dart';
+import './answersfile.dart';
 import './quiz.dart';
-import 'result.dart';
+import './result.dart';
+import './login.dart';
 
 void main() => runApp(MyApp());
 
@@ -70,6 +71,7 @@ class _Myappstate extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    //  return loginregister();
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(

@@ -8,8 +8,8 @@ class Answers extends StatelessWidget {
   Answers(this.selecthandler, this.anstxt);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
+    return SizedBox(
+      width: 320,
       child: RaisedButton(
         onPressed: selecthandler,
         elevation: 5,
