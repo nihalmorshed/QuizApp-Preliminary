@@ -8,6 +8,11 @@ class register extends StatefulWidget {
 }
 
 class _registerState extends State<register> {
+  TextEditingController mailcont = TextEditingController();
+  TextEditingController passcont = TextEditingController();
+  TextEditingController namecont = TextEditingController();
+  GlobalKey<FormState> frmkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +23,7 @@ class _registerState extends State<register> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 30),
         child: Form(
+          key: frmkey,
           child: ListView(
             children: [
               Text(
@@ -31,6 +37,12 @@ class _registerState extends State<register> {
                 height: 20,
               ),
               TextFormField(
+                controller: namecont,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please Enter Name!';
+                  }
+                },
                 decoration: InputDecoration(
                   labelText: 'Enter Name',
                 ),
@@ -39,6 +51,15 @@ class _registerState extends State<register> {
                 height: 20,
               ),
               TextFormField(
+                controller: mailcont,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please Enter your e-mail address!';
+                  }
+                  if (value!.length < 3) {
+                    return 'Please enter atleast 3 characters!';
+                  }
+                },
                 decoration: InputDecoration(
                   labelText: 'Enter E-mail',
                 ),
@@ -47,6 +68,13 @@ class _registerState extends State<register> {
                 height: 20,
               ),
               TextFormField(
+                obscureText: true,
+                controller: passcont,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please Enter password!';
+                  }
+                },
                 decoration: InputDecoration(
                   labelText: 'Enter Password',
                 ),
@@ -55,6 +83,15 @@ class _registerState extends State<register> {
                 height: 20,
               ),
               TextFormField(
+                obscureText: true,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please confirm Password!';
+                  }
+                  if (value != passcont.text) {
+                    return 'Password doesn\'t match!';
+                  }
+                },
                 decoration: InputDecoration(
                   labelText: 'Confirm Password',
                 ),
@@ -63,7 +100,11 @@ class _registerState extends State<register> {
                 height: 20,
               ),
               MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (frmkey.currentState!.validate()) {
+                    print('Registration Successful!');
+                  }
+                },
                 height: 50,
                 minWidth: 100,
                 color: Colors.teal,

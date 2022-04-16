@@ -71,20 +71,20 @@ class _Myappstate extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    //  return loginregister();
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('First Flutter Application'),
-        ),
-        body: _question_index < _questions.length
-            ? quiz(
-                answers: _answers,
-                question_index: _question_index,
-                questions: _questions,
-              )
-            : result(_totalscore, _resetquiz),
-      ),
-    );
+    return loginregister();
+    // return MaterialApp(
+    //   home: Scaffold(
+    //     appBar: AppBar(
+    //       title: Text('First Flutter Application'),
+    //     ),
+    //     body: _question_index < _questions.length
+    //         ? quiz(
+    //             answers: _answers,
+    //             question_index: _question_index,
+    //             questions: _questions,
+    //           )
+    //         : result(_totalscore, _resetquiz),
+    //   ),
+    // );
   }
 }
