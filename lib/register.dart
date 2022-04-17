@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+FirebaseAuth auth = FirebaseAuth.instance;
 
 class register extends StatefulWidget {
   register({Key? key}) : super(key: key);
@@ -12,6 +15,12 @@ class _registerState extends State<register> {
   TextEditingController passcont = TextEditingController();
   TextEditingController namecont = TextEditingController();
   GlobalKey<FormState> frmkey = GlobalKey<FormState>();
+
+  registeruser() async {
+    await auth.createUserWithEmailAndPassword(
+        email: mailcont.text, password: passcont.text);
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +84,9 @@ class _registerState extends State<register> {
                   if (value!.isEmpty) {
                     return 'Please Enter password!';
                   }
+                  if (value!.length < 6) {
+                    return 'Password should be at least 6 characters!';
+                  }
                 },
                 decoration: InputDecoration(
                   labelText: 'Enter Password',
@@ -103,6 +115,7 @@ class _registerState extends State<register> {
               MaterialButton(
                 onPressed: () {
                   if (frmkey.currentState!.validate()) {
+                    registeruser();
                     print('Registration Successful!');
                   }
                 },

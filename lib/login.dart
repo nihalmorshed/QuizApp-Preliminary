@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import './register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class loginregister extends StatefulWidget {
   loginregister({Key? key}) : super(key: key);
@@ -10,6 +12,14 @@ class loginregister extends StatefulWidget {
 
 class _loginregisterState extends State<loginregister> {
   GlobalKey<FormState> frmkey = GlobalKey<FormState>();
+  TextEditingController mailcont = TextEditingController();
+  TextEditingController passcont = TextEditingController();
+
+  loginuser() async {
+    await auth.signInWithEmailAndPassword(
+        email: mailcont.text, password: passcont.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,6 +48,7 @@ class _loginregisterState extends State<loginregister> {
                     height: 20,
                   ),
                   TextFormField(
+                    controller: mailcont,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please Enter your e-mail address!';
@@ -54,6 +65,8 @@ class _loginregisterState extends State<loginregister> {
                     height: 20,
                   ),
                   TextFormField(
+                    controller: passcont,
+                    obscureText: true,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please Enter password!';
@@ -69,6 +82,7 @@ class _loginregisterState extends State<loginregister> {
                   MaterialButton(
                     onPressed: () {
                       if (frmkey.currentState!.validate()) {
+                        loginuser();
                         print('Validation Successful!');
                       }
                     },
