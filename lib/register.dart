@@ -66,7 +66,7 @@ class _registerState extends State<register> {
                   if (value!.isEmpty) {
                     return 'Please Enter your e-mail address!';
                   }
-                  if (value!.length < 3) {
+                  if (value.length < 3) {
                     return 'Please enter atleast 3 characters!';
                   }
                 },
@@ -84,7 +84,7 @@ class _registerState extends State<register> {
                   if (value!.isEmpty) {
                     return 'Please Enter password!';
                   }
-                  if (value!.length < 6) {
+                  if (value.length < 6) {
                     return 'Password should be at least 6 characters!';
                   }
                 },
