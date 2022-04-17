@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/errorlogin.dart';
 import './register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import './home.dart';
 
 class loginregister extends StatefulWidget {
   loginregister({Key? key}) : super(key: key);
@@ -15,9 +17,20 @@ class _loginregisterState extends State<loginregister> {
   TextEditingController mailcont = TextEditingController();
   TextEditingController passcont = TextEditingController();
 
-  loginuser() async {
-    await auth.signInWithEmailAndPassword(
-        email: mailcont.text, password: passcont.text);
+  loginuser(BuildContext context) async {
+    try {
+      UserCredential uc = await auth.signInWithEmailAndPassword(
+          email: mailcont.text, password: passcont.text);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => homescreen()),
+      );
+    } on Exception {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => error()),
+      );
+    }
   }
 
   @override
@@ -53,7 +66,7 @@ class _loginregisterState extends State<loginregister> {
                       if (value!.isEmpty) {
                         return 'Please Enter your e-mail address!';
                       }
-                      if (value!.length < 3) {
+                      if (value.length < 3) {
                         return 'Please enter atleast 3 characters!';
                       }
                     },
@@ -82,7 +95,7 @@ class _loginregisterState extends State<loginregister> {
                   MaterialButton(
                     onPressed: () {
                       if (frmkey.currentState!.validate()) {
-                        loginuser();
+                        loginuser(context);
                         print('Validation Successful!');
                       }
                     },
