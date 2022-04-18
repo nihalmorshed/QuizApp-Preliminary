@@ -16,7 +16,7 @@ class _registerState extends State<register> {
   TextEditingController namecont = TextEditingController();
   GlobalKey<FormState> frmkey = GlobalKey<FormState>();
 
-  registeruser() async {
+  registeruser(BuildContext context) async {
     await auth.createUserWithEmailAndPassword(
         email: mailcont.text, password: passcont.text);
     Navigator.pop(context);
@@ -115,7 +115,7 @@ class _registerState extends State<register> {
               MaterialButton(
                 onPressed: () {
                   if (frmkey.currentState!.validate()) {
-                    registeruser();
+                    registeruser(context);
                     print('Registration Successful!');
                   }
                 },

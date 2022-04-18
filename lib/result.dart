@@ -8,13 +8,13 @@ class result extends StatelessWidget {
   String get resultphrase {
     String txt;
     if (totalScore <= 8)
-      txt = "You\'re innocent! Your score is";
+      txt = "You\'re innocent!\n Your score is " + totalScore.toString();
     else if (totalScore <= 12)
-      txt = "Pretty Likable! Your score is";
+      txt = "Pretty Likable!\n Your score is " + totalScore.toString();
     else if (totalScore <= 16)
-      txt = "You\'re...strange!! Your score is";
+      txt = "You\'re...strange!!\n Your score is " + totalScore.toString();
     else
-      txt = "You\'re so bad!! Your score is";
+      txt = "You\'re so bad!!\n Your score is " + totalScore.toString();
 
     return txt;
   }
@@ -25,10 +25,13 @@ class result extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            resultphrase,
-            style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20),
+            child: Text(
+              resultphrase,
+              style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
           ),
           ElevatedButton(
             onPressed: resetHandler,
