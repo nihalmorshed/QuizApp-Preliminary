@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/quiz.dart';
 import './result.dart';
 
-FirebaseFirestore firebase = FirebaseFirestore.instance;
+FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 class game extends StatefulWidget {
   game({Key? key}) : super(key: key);
@@ -15,35 +15,64 @@ class game extends StatefulWidget {
 class _gameState extends State<game> {
   static const _questions = [
     {
-      'questiontext': 'What\'s ur favourite Color!?',
+      'questiontext': 'Which country hosted the 2018 World Cup?',
       'answertext': [
-        {'text': 'Red', 'score': 6},
-        {'text': 'Green', 'score': 3},
-        {'text': 'Blue', 'score': 10},
-        {'text': 'White', 'score': 1},
+        {'text': 'Russia', 'score': 10},
+        {'text': 'Brazil', 'score': 0},
+        {'text': 'France', 'score': 0},
+        {'text': 'Germany', 'score': 0},
       ],
     },
     {
-      'questiontext': 'What\'s ur favourite Food!?',
+      'questiontext':
+          'Which team will arrive at the tournament as the reigning champions?',
       'answertext': [
-        {'text': 'Meat', 'score': 3},
-        {'text': 'Fish', 'score': 11},
-        {'text': 'Vegies', 'score': 5},
-        {'text': 'Chicken', 'score': 9},
+        {'text': 'Germany', 'score': 0},
+        {'text': 'France', 'score': 10},
+        {'text': 'England', 'score': 0},
+        {'text': 'Brazil', 'score': 0},
       ],
     },
     {
-      'questiontext': 'Who\'s ur favourite Superhero!?',
+      'questiontext': 'Which of the following is not an official FIFA partner?',
       'answertext': [
-        {'text': 'SpiderMan', 'score': 10},
-        {'text': 'Batman', 'score': 9},
-        {'text': 'Superman', 'score': 5},
-        {'text': 'Ironman', 'score': 7}
+        {'text': 'Adidas', 'score': 0},
+        {'text': 'Budweiser', 'score': 10},
+        {'text': 'Visa', 'score': 0},
+        {'text': 'Coca-Cola', 'score': 0}
+      ],
+    },
+    {
+      'questiontext': 'Which countries will host the 2026 World Cup?',
+      'answertext': [
+        {'text': 'USA', 'score': 0},
+        {'text': 'USA and Mexico', 'score': 0},
+        {'text': 'USA and Canada', 'score': 0},
+        {'text': 'USA, Mexico and Canada', 'score': 10}
+      ],
+    },
+    {
+      'questiontext': 'How many previous World Cups have there been?',
+      'answertext': [
+        {'text': '18', 'score': 0},
+        {'text': '19', 'score': 0},
+        {'text': '20', 'score': 0},
+        {'text': '21', 'score': 10}
+      ],
+    },
+    {
+      'questiontext': 'Which stadium has the highest capacity?',
+      'answertext': [
+        {'text': 'Al Bayt Stadium', 'score': 0},
+        {'text': 'Lusail Iconic Stadium', 'score': 10},
+        {'text': 'Education City Stadium', 'score': 0},
+        {'text': 'Al Rayyan Stadium', 'score': 0}
       ],
     },
   ];
   var _question_index = 0;
   var _totalscore = 0;
+  var _quesCount = 0;
 
   void _resetquiz() {
     setState(() {
@@ -67,7 +96,7 @@ class _gameState extends State<game> {
   String name = '';
   @override
   void initState() {
-    firebase.collection('QuizName').get().then((QuerySnapshot) => {
+    firestore.collection('QuizName').get().then((QuerySnapshot) => {
           QuerySnapshot.docs.forEach((element) {
             setState(() {
               name = element['Name'];
@@ -82,7 +111,7 @@ class _gameState extends State<game> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Ji le Apni Jindegi'),
+          title: Text(name),
           backgroundColor: Colors.teal,
           centerTitle: true,
         ),
