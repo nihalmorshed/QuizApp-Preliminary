@@ -9,14 +9,25 @@ class result extends StatelessWidget {
   String get resultphrase {
     String txt;
     if (totalScore >= 50)
-      txt = "You\'re  pretty Good!\n Your score is " + totalScore.toString();
+      txt = "You\'re  pretty Good!\n Your score is " +
+          totalScore.toString() +
+          " Out of " +
+          160.toString();
     else if (totalScore >= 40)
-      txt = "Not Bad!\n Your score is " + totalScore.toString();
+      txt = "Not Bad!\n Your score is " +
+          totalScore.toString() +
+          " Out of " +
+          160.toString();
     else if (totalScore >= 30)
       txt = "There's scope for improvement!!\n Your score is " +
-          totalScore.toString();
+          totalScore.toString() +
+          " Out of " +
+          160.toString();
     else
-      txt = "You\'re so bad!!\n Your score is " + totalScore.toString();
+      txt = "You\'re so bad!!\n Your score is " +
+          totalScore.toString() +
+          " Out of " +
+          160.toString();
 
     return txt;
   }
@@ -31,7 +42,7 @@ class result extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20),
             child: Text(
               resultphrase,
-              style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
           ),
@@ -43,10 +54,13 @@ class result extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => homescreen()),
               );
             },
-            child: Text(
-              'Restart!',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+              child: Text(
+                'Return to Home!',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
             ),
             style: ElevatedButton.styleFrom(
                 primary: Colors.orange, onPrimary: Colors.white),

@@ -69,6 +69,100 @@ class _gameState extends State<game> {
         {'text': 'Al Rayyan Stadium', 'score': 0}
       ],
     },
+    {
+      'questiontext':
+          'Which was the only FIFA World Cup tournament not to have a Final match?',
+      'answertext': [
+        {'text': '1950 in Brazil', 'score': 10},
+        {'text': '1994 in United States', 'score': 0},
+        {'text': ' 1986 in Mexico', 'score': 0},
+        {'text': '1978 in Argentina', 'score': 0}
+      ],
+    },
+    {
+      'questiontext':
+          'Who was the only manager to win the FIFA World Cup twice?',
+      'answertext': [
+        {'text': 'Aymoré Moreira', 'score': 0},
+        {'text': 'Luiz Felipe Scolari', 'score': 0},
+        {'text': 'Franz Beckenbauer', 'score': 0},
+        {'text': 'Vittorio Pozzo of Italy', 'score': 10}
+      ],
+    },
+    {
+      'questiontext':
+          'Who won the Golden Boot at the 2018 World Cup in Russia?',
+      'answertext': [
+        {'text': 'Cristiano Ronaldo, Portugal', 'score': 0},
+        {'text': 'Antoine Griezmann, France', 'score': 0},
+        {'text': 'Romelu Lukaku, Belgium', 'score': 0},
+        {'text': 'Harry Kane, England', 'score': 10}
+      ],
+    },
+    {
+      'questiontext': 'How many world cup finals have been won on penalties?',
+      'answertext': [
+        {'text': 'One', 'score': 0},
+        {'text': 'Two', 'score': 10},
+        {'text': 'Three', 'score': 0},
+        {'text': 'Four', 'score': 0}
+      ],
+    },
+    {
+      'questiontext': 'Who has scored the most goals in World Cup history?',
+      'answertext': [
+        {'text': 'Gerd Müller, Germany', 'score': 0},
+        {'text': 'Miroslav Klose, Germany', 'score': 10},
+        {'text': 'Ronaldo, Brazil', 'score': 0},
+        {'text': 'Pele, Brazil', 'score': 0}
+      ],
+    },
+    {
+      'questiontext':
+          'Luis Suarez was caught on camera biting the shoulder of which player in 2014?',
+      'answertext': [
+        {'text': 'Giorgio Chiellini, Italy', 'score': 10},
+        {'text': 'Leonardo Bonucci, Italy', 'score': 0},
+        {'text': 'Ciro Immobile, Italy', 'score': 0},
+        {'text': 'Lorenzo Insigne, Italy', 'score': 0}
+      ],
+    },
+    {
+      'questiontext': 'Who scored the World Cup\'s first VAR goal?',
+      'answertext': [
+        {'text': 'Romelu Lukaku, Belgium', 'score': 0},
+        {'text': 'Denis Cheryshev, Russia', 'score': 0},
+        {'text': 'Antoine Griezmann, France', 'score': 10},
+        {'text': 'Luka Modric, Croatia ', 'score': 0}
+      ],
+    },
+    {
+      'questiontext': 'Which team has played maximum FIFA final?',
+      'answertext': [
+        {'text': 'Germany ', 'score': 10},
+        {'text': 'England', 'score': 0},
+        {'text': 'Brazil', 'score': 0},
+        {'text': 'Italy', 'score': 0}
+      ],
+    },
+    {
+      'questiontext': 'Who design FIFA cup tournament format?',
+      'answertext': [
+        {'text': 'Óscar Míguez', 'score': 0},
+        {'text': 'Guillermo Stábile', 'score': 0},
+        {'text': 'Landon Donovan', 'score': 0},
+        {'text': 'Silvio Gazzaniga', 'score': 10}
+      ],
+    },
+    {
+      'questiontext': ' Most Successful FIFA Cup Team?',
+      'answertext': [
+        {'text': 'Argentina', 'score': 0},
+        {'text': 'Germany', 'score': 0},
+        {'text': 'Italy', 'score': 0},
+        {'text': 'Brazil', 'score': 10}
+      ],
+    },
   ];
   var _question_index = 0;
   var _totalscore = 0;
@@ -83,11 +177,13 @@ class _gameState extends State<game> {
 
   void _updtqindex() {
     _question_index++;
+    _quesCount++;
     print(_question_index);
   }
 
   void _answers(int score) {
     _totalscore += score;
+
     setState(() {
       _updtqindex();
     });
@@ -111,7 +207,9 @@ class _gameState extends State<game> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text(name),
+          title: Text(
+              //name
+              "The World Cup Quiz"),
           backgroundColor: Colors.teal,
           centerTitle: true,
         ),

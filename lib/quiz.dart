@@ -16,6 +16,13 @@ class quiz extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            "Question: " + (question_indexquiz + 1).toString(),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
         questionsfile(
             questionsquiz[question_indexquiz]['questiontext'] as String),
         ...(questionsquiz[question_indexquiz]['answertext']
