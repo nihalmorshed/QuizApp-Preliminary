@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/game.dart';
+import 'package:flutter_complete_guide/profile.dart';
 
 class homescreen extends StatelessWidget {
   const homescreen({Key? key}) : super(key: key);
@@ -7,6 +8,13 @@ class homescreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => game()),
+    );
+  }
+
+  leader(BuildContext context) async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => profile()),
     );
   }
 
@@ -56,7 +64,9 @@ class homescreen extends StatelessWidget {
                 height: 100,
                 width: 120,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    leader(context);
+                  },
                   child: Text(
                     'Leaderboard!',
                     style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
