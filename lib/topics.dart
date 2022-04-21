@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/game.dart';
-import 'package:flutter_complete_guide/profile.dart';
-import 'package:flutter_complete_guide/topics.dart';
+import './topics_cricket.dart';
 
-class homescreen extends StatelessWidget {
-  const homescreen({Key? key}) : super(key: key);
+class topics extends StatelessWidget {
+  const topics({Key? key}) : super(key: key);
   startgame(BuildContext context) async {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => topics()),
+      MaterialPageRoute(builder: (context) => game()),
     );
   }
 
-  leader(BuildContext context) async {
+  topics_cricket(BuildContext context) async {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => profile()),
+      MaterialPageRoute(builder: (context) => cricket()),
     );
   }
 
@@ -33,7 +32,7 @@ class homescreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Choose Your Options',
+                'Choose Your Topic',
                 style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
@@ -42,19 +41,19 @@ class homescreen extends StatelessWidget {
               ),
               SizedBox(
                 height: 100,
-                width: 120,
+                width: 180,
                 child: ElevatedButton(
                   onPressed: () {
                     startgame(context);
                   },
                   child: Text(
-                    'Start!',
+                    'Fifa World Cup 2022',
                     style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                   ),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.teal,
                     onPrimary: Colors.white,
-                    padding: EdgeInsets.all(15),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   ),
                 ),
               ),
@@ -63,19 +62,19 @@ class homescreen extends StatelessWidget {
               ),
               SizedBox(
                 height: 100,
-                width: 120,
+                width: 150,
                 child: ElevatedButton(
                   onPressed: () {
-                    leader(context);
+                    topics_cricket(context);
                   },
                   child: Text(
-                    'Leaderboard!',
+                    'Cricket',
                     style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                   ),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.teal,
                     onPrimary: Colors.white,
-                    padding: EdgeInsets.all(15),
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                   ),
                 ),
               ),

@@ -86,7 +86,7 @@ class _gameState extends State<game> {
         {'text': 'Aymoré Moreira', 'score': 0},
         {'text': 'Luiz Felipe Scolari', 'score': 0},
         {'text': 'Franz Beckenbauer', 'score': 0},
-        {'text': 'Vittorio Pozzo of Italy', 'score': 10}
+        {'text': 'Vittorio Pozzo', 'score': 10}
       ],
     },
     {
