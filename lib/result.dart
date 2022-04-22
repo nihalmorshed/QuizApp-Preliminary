@@ -34,15 +34,19 @@ class result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20),
             child: Text(
               resultphrase,
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Colors.orange,
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
           ),
@@ -63,7 +67,7 @@ class result extends StatelessWidget {
               ),
             ),
             style: ElevatedButton.styleFrom(
-                primary: Colors.orange, onPrimary: Colors.white),
+                primary: Colors.orange, onPrimary: Colors.black),
           ),
         ],
       ),

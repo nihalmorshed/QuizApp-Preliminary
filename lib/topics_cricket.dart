@@ -218,9 +218,12 @@ class _cricketState extends State<cricket> {
       home: Scaffold(
         appBar: AppBar(
           title: Text(
-              //name
-              "The Cricket Quiz"),
-          backgroundColor: Colors.teal,
+            //name
+            "The Cricket Quiz",
+            style: TextStyle(
+                color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: Colors.orange,
           centerTitle: true,
         ),
         body: _question_index < _questions.length

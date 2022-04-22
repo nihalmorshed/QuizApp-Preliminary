@@ -13,9 +13,9 @@ class Answers extends StatelessWidget {
       child: RaisedButton(
         onPressed: selecthandler,
         elevation: 5,
-        color: Colors.teal,
-        textColor: Colors.white,
-        splashColor: Colors.red,
+        color: Colors.orange,
+        textColor: Colors.black,
+        splashColor: Colors.black,
         child: Text(anstxt),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(16.0))),

@@ -208,9 +208,12 @@ class _gameState extends State<game> {
       home: Scaffold(
         appBar: AppBar(
           title: Text(
-              //name
-              "The World Cup Quiz"),
-          backgroundColor: Colors.teal,
+            //name
+            "The World Cup Quiz",
+            style: TextStyle(
+                color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: Colors.orange,
           centerTitle: true,
         ),
         body: _question_index < _questions.length

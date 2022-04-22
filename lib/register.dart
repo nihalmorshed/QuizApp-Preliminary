@@ -25,9 +25,13 @@ class _registerState extends State<register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Register'),
-        backgroundColor: Colors.teal,
+        title: Text(
+          'Register',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.orange,
         centerTitle: true,
       ),
       body: Padding(
@@ -39,7 +43,7 @@ class _registerState extends State<register> {
               Text(
                 'Registration',
                 style: TextStyle(
-                    color: Colors.teal,
+                    color: Colors.orange,
                     fontSize: 30,
                     fontWeight: FontWeight.bold),
               ),
@@ -47,6 +51,8 @@ class _registerState extends State<register> {
                 height: 20,
               ),
               TextFormField(
+                style: TextStyle(color: Colors.orange),
+                cursorColor: Colors.orange,
                 controller: namecont,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -54,13 +60,23 @@ class _registerState extends State<register> {
                   }
                 },
                 decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.orange, width: 2.0),
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
                   labelText: 'Enter Name',
+                  labelStyle: TextStyle(
+                    color: Colors.orange,
+                  ),
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
               TextFormField(
+                style: TextStyle(color: Colors.orange),
+                cursorColor: Colors.orange,
                 controller: mailcont,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -71,13 +87,23 @@ class _registerState extends State<register> {
                   }
                 },
                 decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.orange, width: 2.0),
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
                   labelText: 'Enter E-mail',
+                  labelStyle: TextStyle(
+                    color: Colors.orange,
+                  ),
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
               TextFormField(
+                style: TextStyle(color: Colors.orange),
+                cursorColor: Colors.orange,
                 obscureText: true,
                 controller: passcont,
                 validator: (value) {
@@ -89,13 +115,23 @@ class _registerState extends State<register> {
                   }
                 },
                 decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.orange, width: 2.0),
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
                   labelText: 'Enter Password',
+                  labelStyle: TextStyle(
+                    color: Colors.orange,
+                  ),
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
               TextFormField(
+                style: TextStyle(color: Colors.orange),
+                cursorColor: Colors.orange,
                 obscureText: true,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -106,7 +142,15 @@ class _registerState extends State<register> {
                   }
                 },
                 decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.orange, width: 2.0),
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
                   labelText: 'Confirm Password',
+                  labelStyle: TextStyle(
+                    color: Colors.orange,
+                  ),
                 ),
               ),
               SizedBox(
@@ -121,10 +165,10 @@ class _registerState extends State<register> {
                 },
                 height: 50,
                 minWidth: 100,
-                color: Colors.teal,
+                color: Colors.orange,
                 child: Text(
                   'Submit',
-                  style: TextStyle(color: Colors.white, fontSize: 30),
+                  style: TextStyle(color: Colors.black, fontSize: 30),
                 ),
               ),
             ],

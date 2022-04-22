@@ -8,10 +8,14 @@ class error extends StatelessWidget {
     return MaterialApp(
       home: Center(
         child: Scaffold(
+          backgroundColor: Colors.black,
           body: Center(
             child: Text(
               'Log-in Failed!!',
-              style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Colors.orange,
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
           ),

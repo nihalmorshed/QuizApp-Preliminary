@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class questionsfile extends StatelessWidget {
   final String ques;
@@ -12,7 +13,7 @@ class questionsfile extends StatelessWidget {
       child: Text(
         ques,
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 25),
+        style: TextStyle(color: Colors.orange, fontSize: 25),
       ),
     );
   }

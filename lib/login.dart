@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/errorlogin.dart';
 import './register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import './home.dart';
 
 class loginregister extends StatefulWidget {
@@ -38,10 +37,14 @@ class _loginregisterState extends State<loginregister> {
     return MaterialApp(
         home: Builder(
       builder: (context) => Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Colors.teal,
-          title: Text("Start Quiz"),
+          backgroundColor: Colors.orange,
+          title: Text(
+            "Log-in to Enter",
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
         ),
         body: Center(
           child: Padding(
@@ -53,7 +56,7 @@ class _loginregisterState extends State<loginregister> {
                   Text(
                     'Log-in',
                     style: TextStyle(
-                        color: Colors.teal,
+                        color: Colors.orange,
                         fontSize: 30,
                         fontWeight: FontWeight.bold),
                   ),
@@ -61,6 +64,8 @@ class _loginregisterState extends State<loginregister> {
                     height: 20,
                   ),
                   TextFormField(
+                    cursorColor: Colors.orange,
+                    style: TextStyle(color: Colors.orange),
                     controller: mailcont,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -71,13 +76,23 @@ class _loginregisterState extends State<loginregister> {
                       }
                     },
                     decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.orange, width: 2.0),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
                       labelText: 'Enter E-mail',
+                      labelStyle: TextStyle(
+                        color: Colors.orange,
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   TextFormField(
+                    cursorColor: Colors.orange,
+                    style: TextStyle(color: Colors.orange),
                     controller: passcont,
                     obscureText: true,
                     validator: (value) {
@@ -86,7 +101,15 @@ class _loginregisterState extends State<loginregister> {
                       }
                     },
                     decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.orange, width: 2.0),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
                       labelText: 'Enter Password',
+                      labelStyle: TextStyle(
+                        color: Colors.orange,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -101,17 +124,23 @@ class _loginregisterState extends State<loginregister> {
                     },
                     height: 50,
                     minWidth: 100,
-                    color: Colors.teal,
+                    color: Colors.orange,
                     child: Text(
                       'Submit',
-                      style: TextStyle(color: Colors.white, fontSize: 30),
+                      style: TextStyle(color: Colors.black, fontSize: 30),
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   OutlineButton(
-                    child: Text('Register'),
+                    borderSide: BorderSide(color: Colors.orange),
+                    child: Text(
+                      'Register',
+                      style: TextStyle(
+                        color: Colors.orange,
+                      ),
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,

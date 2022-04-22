@@ -22,10 +22,14 @@ class topics extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
-          title: Text('Welcome!'),
+          title: Text(
+            'Topics',
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
           centerTitle: true,
-          backgroundColor: Colors.teal,
+          backgroundColor: Colors.orange,
         ),
         body: Center(
           child: Column(
@@ -33,7 +37,10 @@ class topics extends StatelessWidget {
             children: [
               Text(
                 'Choose Your Topic',
-                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.orange,
+                    fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -51,8 +58,8 @@ class topics extends StatelessWidget {
                     style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.teal,
-                    onPrimary: Colors.white,
+                    primary: Colors.orange,
+                    onPrimary: Colors.black,
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   ),
                 ),
@@ -72,8 +79,8 @@ class topics extends StatelessWidget {
                     style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.teal,
-                    onPrimary: Colors.white,
+                    primary: Colors.orange,
+                    onPrimary: Colors.black,
                     padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                   ),
                 ),

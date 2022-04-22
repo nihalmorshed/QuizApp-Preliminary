@@ -23,10 +23,14 @@ class homescreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
-          title: Text('Welcome!'),
+          title: Text(
+            'Welcome!',
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
           centerTitle: true,
-          backgroundColor: Colors.teal,
+          backgroundColor: Colors.orange,
         ),
         body: Center(
           child: Column(
@@ -34,7 +38,10 @@ class homescreen extends StatelessWidget {
             children: [
               Text(
                 'Choose Your Options',
-                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Colors.orange,
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -52,8 +59,8 @@ class homescreen extends StatelessWidget {
                     style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.teal,
-                    onPrimary: Colors.white,
+                    primary: Colors.orange,
+                    onPrimary: Colors.black,
                     padding: EdgeInsets.all(15),
                   ),
                 ),
@@ -73,8 +80,8 @@ class homescreen extends StatelessWidget {
                     style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.teal,
-                    onPrimary: Colors.white,
+                    primary: Colors.orange,
+                    onPrimary: Colors.black,
                     padding: EdgeInsets.all(15),
                   ),
                 ),

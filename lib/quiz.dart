@@ -14,24 +14,30 @@ class quiz extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            "Question: " + (question_indexquiz + 1).toString(),
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    return Container(
+      decoration: new BoxDecoration(color: Colors.black),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "Question: " + (question_indexquiz + 1).toString(),
+              style: TextStyle(
+                  color: Colors.orange,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
-        questionsfile(
-            questionsquiz[question_indexquiz]['questiontext'] as String),
-        ...(questionsquiz[question_indexquiz]['answertext']
-                as List<Map<String, Object>>)
-            .map((ans) {
-          return Answers(
-              () => answersquiz(ans['score']), ans['text'] as String);
-        }).toList()
-      ],
+          questionsfile(
+              questionsquiz[question_indexquiz]['questiontext'] as String),
+          ...(questionsquiz[question_indexquiz]['answertext']
+                  as List<Map<String, Object>>)
+              .map((ans) {
+            return Answers(
+                () => answersquiz(ans['score']), ans['text'] as String);
+          }).toList()
+        ],
+      ),
     );
   }
 }
