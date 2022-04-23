@@ -27,8 +27,6 @@ class _resultState extends State<result> {
         name = value.data()!["name"].toString();
         score = value.data()!["score"];
       });
-      print(name);
-      print(score);
     });
   }
 
@@ -45,25 +43,32 @@ class _resultState extends State<result> {
   String get resultphrase {
     String txt;
     push();
-    if (widget.totalScore >= 80) {
+    if (widget.totalScore >= 120) {
       fetch();
-      txt = name +
+      txt = "Congratulations! " +
+          name +
           "\nYou\'re  pretty Good!\n Your score is " +
           score.toString() +
           " Out of " +
           160.toString();
-    } else if (widget.totalScore >= 60)
-      txt = "Not Bad!\n Your score is " +
+    } else if (widget.totalScore >= 100)
+      txt = "Not Bad! " +
+          name +
+          " Your score is " +
           widget.totalScore.toString() +
           " Out of " +
           160.toString();
-    else if (widget.totalScore >= 50)
-      txt = "There's scope for improvement!!\n Your score is " +
+    else if (widget.totalScore >= 60)
+      txt = "Take ur time!! " +
+          name +
+          " There's scope for improvement!!\n Your score is " +
           widget.totalScore.toString() +
           " Out of " +
           160.toString();
     else
-      txt = "You\'re so bad!!\n Your score is " +
+      txt = "Such a shame, " +
+          name +
+          "\nYou\'re so bad!! Your score is " +
           widget.totalScore.toString() +
           " Out of " +
           160.toString();

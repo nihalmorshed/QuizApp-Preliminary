@@ -156,6 +156,8 @@ class _loginregisterState extends State<loginregister> {
                             "name": namecont.text,
                             "email": mailcont.text,
                             "uid": firebaseUser.uid,
+                            "score": null,
+                            "highscore": null,
                           }, SetOptions(merge: true)).then((_) {
                             print("success!");
                           });
