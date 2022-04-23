@@ -3,33 +3,40 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/home.dart';
 
+final firestoreInstance = FirebaseFirestore.instance;
+
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 String name = '';
 int score = 0;
 
-class result extends StatelessWidget {
+class result extends StatefulWidget {
   final int totalScore;
   final Function() resetHandler;
   result(this.totalScore, this.resetHandler);
 
+  @override
+  State<result> createState() => _resultState();
+}
+
+class _resultState extends State<result> {
   void fetch() {
-    var firebaseUser = FirebaseAuth.instance.currentUser;
-    firestoreInstance
-        .collection("users")
-        .doc(firebaseUser?.uid)
-        .get()
-        .then((value) {
+    var firebaseUser = FirebaseAuth.instance.currentUser!.uid;
+    firestoreInstance.collection("users").doc(firebaseUser).get().then((value) {
       print(value.data());
-      name = value.data()![firebaseUser?.uid.toString()]["name"];
-      score = value.data()![firebaseUser?.uid.toString()]["score"];
+      setState(() {
+        name = value.data()!["name"].toString();
+        score = value.data()!["score"];
+      });
+      print(name);
+      print(score);
     });
   }
 
-  void push() {
+  Future<void> push() async {
     var firebaseUser = FirebaseAuth.instance.currentUser;
-    firestoreInstance.collection("users").doc(firebaseUser?.uid).set({
+    await firestoreInstance.collection("users").doc(firebaseUser?.uid).set({
       "uid": firebaseUser?.uid,
-      "score": totalScore,
+      "score": widget.totalScore,
     }, SetOptions(merge: true)).then((_) {
       print("success!");
     });
@@ -38,33 +45,31 @@ class result extends StatelessWidget {
   String get resultphrase {
     String txt;
     push();
-    if (totalScore >= 80) {
+    if (widget.totalScore >= 80) {
       fetch();
       txt = name +
           "\nYou\'re  pretty Good!\n Your score is " +
           score.toString() +
           " Out of " +
           160.toString();
-    } else if (totalScore >= 60)
+    } else if (widget.totalScore >= 60)
       txt = "Not Bad!\n Your score is " +
-          totalScore.toString() +
+          widget.totalScore.toString() +
           " Out of " +
           160.toString();
-    else if (totalScore >= 50)
+    else if (widget.totalScore >= 50)
       txt = "There's scope for improvement!!\n Your score is " +
-          totalScore.toString() +
+          widget.totalScore.toString() +
           " Out of " +
           160.toString();
     else
       txt = "You\'re so bad!!\n Your score is " +
-          totalScore.toString() +
+          widget.totalScore.toString() +
           " Out of " +
           160.toString();
 
     return txt;
   }
-
-  final firestoreInstance = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {

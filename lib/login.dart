@@ -148,16 +148,18 @@ class _loginregisterState extends State<loginregister> {
                     onPressed: () {
                       if (frmkey.currentState!.validate()) {
                         var firebaseUser = FirebaseAuth.instance.currentUser;
-                        firestoreInstance
-                            .collection("users")
-                            .doc(firebaseUser?.uid)
-                            .set({
-                          "name": namecont.text,
-                          "email": mailcont.text,
-                          "uid": firebaseUser?.uid,
-                        }, SetOptions(merge: true)).then((_) {
-                          print("success!");
-                        });
+                        if (firebaseUser != null) {
+                          firestoreInstance
+                              .collection("users")
+                              .doc(firebaseUser.uid)
+                              .set({
+                            "name": namecont.text,
+                            "email": mailcont.text,
+                            "uid": firebaseUser.uid,
+                          }, SetOptions(merge: true)).then((_) {
+                            print("success!");
+                          });
+                        }
                         loginuser(context);
                         print('Validation Successful!');
                       }

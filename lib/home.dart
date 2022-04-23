@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/game.dart';
+import 'package:flutter_complete_guide/login.dart';
 import 'package:flutter_complete_guide/profile.dart';
 import 'package:flutter_complete_guide/topics.dart';
 
@@ -85,6 +87,23 @@ class homescreen extends StatelessWidget {
                     padding: EdgeInsets.all(15),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 80,
+              ),
+              OutlineButton(
+                borderSide: BorderSide(color: Colors.orange),
+                child: Text(
+                  'Log-Out',
+                  style: TextStyle(color: Colors.orange, fontSize: 20),
+                ),
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => loginregister()),
+                  );
+                },
               ),
             ],
           ),
