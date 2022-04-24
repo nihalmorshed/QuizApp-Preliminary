@@ -50,28 +50,28 @@ class _resultState extends State<result> {
           "\nYou\'re  pretty Good!\n Your score is " +
           score.toString() +
           " Out of " +
-          160.toString();
+          150.toString();
     } else if (widget.totalScore >= 100)
       txt = "Not Bad! " +
           name +
           " Your score is " +
           widget.totalScore.toString() +
           " Out of " +
-          160.toString();
+          150.toString();
     else if (widget.totalScore >= 60)
       txt = "Take ur time!! " +
           name +
           " There's scope for improvement!!\n Your score is " +
           widget.totalScore.toString() +
           " Out of " +
-          160.toString();
+          150.toString();
     else
       txt = "Such a shame, " +
           name +
           "\nYou\'re so bad!! Your score is " +
           widget.totalScore.toString() +
           " Out of " +
-          160.toString();
+          150.toString();
 
     return txt;
   }

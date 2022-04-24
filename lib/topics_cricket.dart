@@ -123,16 +123,16 @@ class _cricketState extends State<cricket> {
         {'text': '2005', 'score': 0}
       ],
     },
-    {
-      'questiontext':
-          'Which of the following players do not have a T20 World Cup hat-trick?',
-      'answertext': [
-        {'text': 'KAGISO RABADA', 'score': 0},
-        {'text': 'Lasith Malinga', 'score': 10},
-        {'text': 'Brett Lee', 'score': 0},
-        {'text': 'Wanindu Hasaranga', 'score': 0}
-      ],
-    },
+    // {
+    //   'questiontext':
+    //       'Which of the following players do not have a T20 World Cup hat-trick?',
+    //   'answertext': [
+    //     {'text': 'KAGISO RABADA', 'score': 0},
+    //     {'text': 'Lasith Malinga', 'score': 10},
+    //     {'text': 'Brett Lee', 'score': 0},
+    //     {'text': 'Wanindu Hasaranga', 'score': 0}
+    //   ],
+    // },
     {
       'questiontext':
           'Sachin Tendulkar has made Test hundreds in all Test playing nations except one. Name the country?',
