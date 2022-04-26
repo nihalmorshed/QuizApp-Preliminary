@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/game.dart';
 import 'package:flutter_complete_guide/login.dart';
 import 'package:flutter_complete_guide/profile.dart';
 import 'package:flutter_complete_guide/topics.dart';

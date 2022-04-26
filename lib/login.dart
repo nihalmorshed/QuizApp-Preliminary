@@ -4,7 +4,6 @@ import './register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import './home.dart';
-import './usermodel.dart';
 
 class loginregister extends StatefulWidget {
   loginregister({Key? key}) : super(key: key);
@@ -145,23 +144,22 @@ class _loginregisterState extends State<loginregister> {
                     height: 20,
                   ),
                   MaterialButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (frmkey.currentState!.validate()) {
                         var firebaseUser = FirebaseAuth.instance.currentUser;
-                        if (firebaseUser != null) {
-                          firestoreInstance
-                              .collection("users")
-                              .doc(firebaseUser.uid)
-                              .set({
-                            "name": namecont.text,
-                            "email": mailcont.text,
-                            "uid": firebaseUser.uid,
-                            "score": null,
-                            "highscore": null,
-                          }, SetOptions(merge: true)).then((_) {
-                            print("success!");
-                          });
-                        }
+                        await firestoreInstance
+                            .collection("users")
+                            .doc(firebaseUser?.uid)
+                            .set({
+                          "name": namecont.text,
+                          "email": mailcont.text,
+                          "uid": firebaseUser?.uid,
+                          "score": 10000,
+                          "highscore": 10000,
+                        }, SetOptions(merge: true)).then((_) {
+                          print("Datasetting successful!");
+                        });
+
                         loginuser(context);
                         print('Validation Successful!');
                       }

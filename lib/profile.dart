@@ -1,6 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/localdb.dart';
 
 class profile extends StatefulWidget {
   profile({Key? key}) : super(key: key);
@@ -10,6 +9,30 @@ class profile extends StatefulWidget {
 }
 
 class _profileState extends State<profile> {
+  String name = "User Name";
+  String score = "--";
+  String lead = "---";
+
+  getUserDet() async {
+    await LocalDB.getName().then((value) {
+      setState(() {
+        name = value.toString();
+      });
+    });
+
+    await LocalDB.getMoney().then((value) {
+      setState(() {
+        score = value.toString();
+      });
+    });
+
+    await LocalDB.getRank().then((value) {
+      setState(() {
+        lead = value.toString();
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
