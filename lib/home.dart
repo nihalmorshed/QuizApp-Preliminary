@@ -96,8 +96,9 @@ class homescreen extends StatelessWidget {
                   'Log-Out',
                   style: TextStyle(color: Colors.orange, fontSize: 20),
                 ),
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
+                onPressed: () async {
+                  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+                  await _firebaseAuth.signOut();
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => loginregister()),

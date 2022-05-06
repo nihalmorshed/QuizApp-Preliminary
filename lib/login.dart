@@ -147,7 +147,7 @@ class _loginregisterState extends State<loginregister> {
                     onPressed: () async {
                       if (frmkey.currentState!.validate()) {
                         var firebaseUser = FirebaseAuth.instance.currentUser;
-                        await firestoreInstance
+                        firestoreInstance
                             .collection("users")
                             .doc(firebaseUser?.uid)
                             .set({
