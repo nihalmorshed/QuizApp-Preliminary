@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/errorlogin.dart';
 import './register.dart';
@@ -20,12 +22,25 @@ class _loginregisterState extends State<loginregister> {
 
   loginuser(BuildContext context) async {
     try {
-      UserCredential uc = await auth.signInWithEmailAndPassword(
-          email: mailcont.text, password: passcont.text);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => homescreen()),
-      );
+      await auth
+          .signInWithEmailAndPassword(
+              email: mailcont.text, password: passcont.text)
+          .then((value) {
+        var firebaseUser = FirebaseAuth.instance.currentUser;
+        firestoreInstance.collection("users").doc(firebaseUser?.uid).set({
+          "name": namecont.text,
+          "email": mailcont.text,
+          "uid": firebaseUser?.uid,
+          "score": 10000,
+          "highscore": 10000,
+        }, SetOptions(merge: true)).then((_) {
+          print("Datasetting successful!");
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => homescreen()),
+          );
+        });
+      });
     } on Exception {
       Navigator.push(
         context,
@@ -146,21 +161,7 @@ class _loginregisterState extends State<loginregister> {
                   MaterialButton(
                     onPressed: () async {
                       if (frmkey.currentState!.validate()) {
-                        var firebaseUser = FirebaseAuth.instance.currentUser;
-                        firestoreInstance
-                            .collection("users")
-                            .doc(firebaseUser?.uid)
-                            .set({
-                          "name": namecont.text,
-                          "email": mailcont.text,
-                          "uid": firebaseUser?.uid,
-                          "score": 10000,
-                          "highscore": 10000,
-                        }, SetOptions(merge: true)).then((_) {
-                          print("Datasetting successful!");
-                        });
-
-                        loginuser(context);
+                        await loginuser(context);
                         print('Validation Successful!');
                       }
                     },

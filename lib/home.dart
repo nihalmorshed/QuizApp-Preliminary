@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/login.dart';
@@ -98,11 +100,12 @@ class homescreen extends StatelessWidget {
                 ),
                 onPressed: () async {
                   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-                  await _firebaseAuth.signOut();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => loginregister()),
-                  );
+                  await _firebaseAuth.signOut().then((value) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => loginregister()),
+                    );
+                  });
                 },
               ),
             ],
