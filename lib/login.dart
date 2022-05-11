@@ -31,8 +31,6 @@ class _loginregisterState extends State<loginregister> {
           "name": namecont.text,
           "email": mailcont.text,
           "uid": firebaseUser?.uid,
-          "score": 10000,
-          "highscore": 10000,
         }, SetOptions(merge: true)).then((_) {
           print("Datasetting successful!");
           Navigator.push(

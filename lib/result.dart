@@ -7,7 +7,7 @@ final firestoreInstance = FirebaseFirestore.instance;
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 String name = '';
-int score = 0;
+int highscore = 0;
 
 class result extends StatefulWidget {
   final int totalScore;
@@ -19,13 +19,17 @@ class result extends StatefulWidget {
 }
 
 class _resultState extends State<result> {
-  void fetch() {
+  Future<void> fetch() async {
     var firebaseUser = FirebaseAuth.instance.currentUser!.uid;
-    firestoreInstance.collection("users").doc(firebaseUser).get().then((value) {
+    await firestoreInstance
+        .collection("users")
+        .doc(firebaseUser)
+        .get()
+        .then((value) {
       print(value.data());
       setState(() {
         name = value.data()!["name"].toString();
-        score = value.data()!["score"];
+        highscore = value.data()!["highscore"] ?? -1;
       });
     });
   }
@@ -34,21 +38,29 @@ class _resultState extends State<result> {
     var firebaseUser = FirebaseAuth.instance.currentUser;
     await firestoreInstance.collection("users").doc(firebaseUser?.uid).set({
       "uid": firebaseUser?.uid,
-      "score": widget.totalScore,
+      "highscore": widget.totalScore,
     }, SetOptions(merge: true)).then((_) {
       print("success!");
     });
   }
 
+  void updatescore() async {
+    await fetch().then((_) async {
+      if (widget.totalScore > highscore) {
+        await push();
+      }
+    });
+  }
+
   String get resultphrase {
     String txt;
-    push();
+    updatescore();
+
     if (widget.totalScore >= 120) {
-      fetch();
       txt = "Congratulations! " +
           name +
           "\nYou\'re  pretty Good!\n Your score is " +
-          score.toString() +
+          widget.totalScore.toString() +
           " Out of " +
           150.toString();
     } else if (widget.totalScore >= 100)
