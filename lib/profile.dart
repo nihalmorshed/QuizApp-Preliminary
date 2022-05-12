@@ -1,36 +1,47 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/localdb.dart';
+import 'package:flutter_complete_guide/getusername.dart';
+
+final firestoreInstance = FirebaseFirestore.instance;
+String name = '';
+int highscore = 0;
 
 class profile extends StatefulWidget {
-  profile({Key? key}) : super(key: key);
-
   @override
   State<profile> createState() => _profileState();
 }
 
 class _profileState extends State<profile> {
-  String name = "User Name";
-  String score = "--";
-  String lead = "---";
-
-  getUserDet() async {
-    await LocalDB.getName().then((value) {
+  Future<void> fetch() async {
+    var firebaseUser = FirebaseAuth.instance.currentUser!.uid;
+    await firestoreInstance
+        .collection("users")
+        .doc(firebaseUser)
+        .get()
+        .then((value) {
+      print(value.data());
       setState(() {
-        name = value.toString();
+        name = value.data()!["name"].toString();
+        highscore = value.data()!["highscore"] ?? -1;
       });
     });
+  }
 
-    await LocalDB.getMoney().then((value) {
-      setState(() {
-        score = value.toString();
+  List<String> docIds = [];
+
+  Future getdocIds() async {
+    FirebaseFirestore.instance
+        .collection("users")
+        .orderBy('highscore', descending: true)
+        .get()
+        .then((snapshot) {
+      snapshot.docs.forEach((element) {
+        print(element.reference);
+        docIds.add(element.reference.id);
       });
     });
-
-    await LocalDB.getRank().then((value) {
-      setState(() {
-        lead = value.toString();
-      });
-    });
+    fetch();
   }
 
   @override
@@ -48,7 +59,7 @@ class _profileState extends State<profile> {
         child: Column(
           children: [
             Container(
-              height: 280,
+              height: 200,
               decoration: BoxDecoration(
                 color: Colors.teal,
                 borderRadius: BorderRadius.only(
@@ -61,37 +72,40 @@ class _profileState extends State<profile> {
                   SizedBox(
                     height: 20,
                   ),
-                  Stack(
-                    children: [
-                      CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            "https://images.unsplash.com/photo-1635107510862-53886e926b74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80"),
-                        radius: 50,
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          padding: EdgeInsets.all(2),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.white),
-                          child: Icon(
-                            Icons.edit,
-                            color: Colors.teal,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Stack(
+                  //   children: [
+                  //     CircleAvatar(
+                  //       backgroundImage: NetworkImage(
+                  //           "https://images.unsplash.com/photo-1635107510862-53886e926b74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80"),
+                  //       radius: 50,
+                  //     ),
+                  //     Positioned(
+                  //       bottom: 0,
+                  //       right: 0,
+                  //       child: Container(
+                  //         padding: EdgeInsets.all(2),
+                  //         decoration: BoxDecoration(
+                  //             shape: BoxShape.circle, color: Colors.white),
+                  //         child: Icon(
+                  //           Icons.edit,
+                  //           color: Colors.teal,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   SizedBox(
                     height: 15,
                   ),
                   Text(
-                    "Nihal Morshed",
+                    name,
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   Divider(
                     thickness: 1,
@@ -146,7 +160,7 @@ class _profileState extends State<profile> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Text(
               "LeaderBoard",
@@ -155,39 +169,40 @@ class _profileState extends State<profile> {
             Container(
               margin: EdgeInsets.all(22),
               child: SizedBox(
-                height: 300,
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"),
+                height: 400,
+                child: FutureBuilder(
+                  future: getdocIds(),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: ListTile(
+                            title: Row(
+                              children: [
+                                // CircleAvatar(
+                                //   backgroundImage: NetworkImage(
+                                //       "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"),
+                                // ),
+
+                                Getuserdata(docid: docIds[index]),
+                                // Text(docIds[index]),
+                              ],
+                            ),
+                            tileColor: Colors.blueGrey,
+                            leading: Text(
+                              "#" + (index + 1).toString(),
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            // trailing: Text(" 100",
+                            //     style: TextStyle(fontWeight: FontWeight.bold)),
                           ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text("Nihal Morshed"),
-                        ],
-                      ),
-                      leading: Text(
-                        "#" + (index + 1).toString(),
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      trailing: Text(" 100",
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                        );
+                      },
+                      itemCount: docIds.length,
                     );
                   },
-                  itemCount: 10,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      Divider(
-                    thickness: 1,
-                    color: Colors.teal,
-                    indent: 10,
-                    endIndent: 10,
-                  ),
                 ),
               ),
             )
