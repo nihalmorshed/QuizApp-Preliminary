@@ -122,14 +122,14 @@ class _profileState extends State<profile> {
                       Column(
                         children: [
                           Text(
-                            "45",
+                            "13",
                             style: TextStyle(
                                 fontSize: 42,
                                 fontWeight: FontWeight.w300,
                                 color: Colors.white.withOpacity(0.9)),
                           ),
                           Text(
-                            "Level",
+                            "Rank",
                             style: TextStyle(
                                 fontSize: 19,
                                 fontWeight: FontWeight.bold,
@@ -140,14 +140,14 @@ class _profileState extends State<profile> {
                       Column(
                         children: [
                           Text(
-                            "#335",
+                            "185",
                             style: TextStyle(
                                 fontSize: 42,
                                 fontWeight: FontWeight.w300,
                                 color: Colors.white.withOpacity(0.9)),
                           ),
                           Text(
-                            "Rank",
+                            "High Score",
                             style: TextStyle(
                                 fontSize: 19,
                                 fontWeight: FontWeight.bold,
