@@ -19,7 +19,6 @@ class Getuserdata extends StatelessWidget {
         } else {
           return Text("Loading...");
         }
-        ;
       },
     );
   }

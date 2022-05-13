@@ -21,9 +21,9 @@ class MyApp extends StatefulWidget {
 class _Myappstate extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return loginregister();
-    // return MaterialApp(
-    //   home: profile(),
-    // );
+    // return loginregister();
+    return MaterialApp(
+      home: profile(),
+    );
   }
 }

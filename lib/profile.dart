@@ -36,16 +36,17 @@ class _profileState extends State<profile> {
         .orderBy('highscore', descending: true)
         .get()
         .then((snapshot) {
+      docIds.clear();
       snapshot.docs.forEach((element) {
         print(element.reference);
         docIds.add(element.reference.id);
       });
     });
-    fetch();
   }
 
   @override
   Widget build(BuildContext context) {
+    fetch();
     return Scaffold(
       appBar: AppBar(
         title: Text(
