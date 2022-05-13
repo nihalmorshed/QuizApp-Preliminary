@@ -28,21 +28,17 @@ class _profileState extends State<profile> {
     });
   }
 
-  List<String> docIds = [];
+  List<QueryDocumentSnapshot<Map<String, dynamic>>> docIds = [];
 
-  Future getdocIds() async {
-    FirebaseFirestore.instance
-        .collection("users")
-        .orderBy('highscore', descending: true)
-        .get()
-        .then((snapshot) {
-      docIds.clear();
-      snapshot.docs.forEach((element) {
-        print(element.reference);
-        docIds.add(element.reference.id);
-      });
-    });
-  }
+  // Future getdocIds() async {
+  //   await FirebaseFirestore.instance
+  //       .collection('users')
+  //       .orderBy('highscore', descending: true)
+  //       .get()
+  //       .then((snapshot) => snapshot.docs.forEach((documents) {
+  //             docIds.add(documents.reference.id);
+  //           }));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +136,7 @@ class _profileState extends State<profile> {
                       Column(
                         children: [
                           Text(
-                            "185",
+                            highscore.toString(),
                             style: TextStyle(
                                 fontSize: 42,
                                 fontWeight: FontWeight.w300,
@@ -171,38 +167,47 @@ class _profileState extends State<profile> {
               margin: EdgeInsets.all(22),
               child: SizedBox(
                 height: 400,
-                child: FutureBuilder(
-                  future: getdocIds(),
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: ListTile(
-                            title: Row(
-                              children: [
-                                // CircleAvatar(
-                                //   backgroundImage: NetworkImage(
-                                //       "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"),
-                                // ),
+                child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                  stream: FirebaseFirestore.instance
+                      .collection('users')
+                      .snapshots(),
+                  builder: (_, snapshot) {
+                    if (snapshot.hasError)
+                      return Text('Error = ${snapshot.error}');
 
-                                Getuserdata(docid: docIds[index]),
-                                // Text(docIds[index]),
-                              ],
+                    if (snapshot.hasData) {
+                      final docs = snapshot.data!.docs;
+                      docIds = snapshot.data!.docs;
+                      // docIds.sort();
+
+                      return ListView.builder(
+                        itemCount: docs.length,
+                        itemBuilder: (_, i) {
+                          final data = docIds[i].data();
+                          return Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: ListTile(
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(25)),
+                              ),
+                              tileColor: Colors.blueGrey,
+                              leading: Text(
+                                "#" + (i + 1).toString(),
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              title: Text(
+                                data['name'],
+                              ),
+                              trailing: Text(
+                                  "Score: " + data['highscore'].toString()),
                             ),
-                            tileColor: Colors.blueGrey,
-                            leading: Text(
-                              "#" + (index + 1).toString(),
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            // trailing: Text(" 100",
-                            //     style: TextStyle(fontWeight: FontWeight.bold)),
-                          ),
-                        );
-                      },
-                      itemCount: docIds.length,
-                    );
+                          );
+                        },
+                      );
+                    }
+
+                    return Center(child: CircularProgressIndicator());
                   },
                 ),
               ),
