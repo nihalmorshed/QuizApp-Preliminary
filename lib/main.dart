@@ -23,7 +23,7 @@ class _Myappstate extends State<MyApp> {
   Widget build(BuildContext context) {
     // return loginregister();
     return MaterialApp(
-      home: profile(),
+      home: loginregister(),
     );
   }
 }

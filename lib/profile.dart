@@ -6,6 +6,7 @@ import 'package:flutter_complete_guide/getusername.dart';
 final firestoreInstance = FirebaseFirestore.instance;
 String name = '';
 int highscore = 0;
+int rank = 0;
 
 class profile extends StatefulWidget {
   @override
@@ -118,7 +119,7 @@ class _profileState extends State<profile> {
                       Column(
                         children: [
                           Text(
-                            "13",
+                            rank.toString(),
                             style: TextStyle(
                                 fontSize: 42,
                                 fontWeight: FontWeight.w300,
@@ -170,6 +171,7 @@ class _profileState extends State<profile> {
                 child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                   stream: FirebaseFirestore.instance
                       .collection('users')
+                      .orderBy('highscore', descending: true)
                       .snapshots(),
                   builder: (_, snapshot) {
                     if (snapshot.hasError)
@@ -184,6 +186,9 @@ class _profileState extends State<profile> {
                         itemCount: docs.length,
                         itemBuilder: (_, i) {
                           final data = docIds[i].data();
+                          if (name == data['name']) {
+                            rank = i + 1;
+                          }
                           return Padding(
                             padding: const EdgeInsets.all(3.0),
                             child: ListTile(
@@ -196,9 +201,7 @@ class _profileState extends State<profile> {
                                 "#" + (i + 1).toString(),
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              title: Text(
-                                data['name'],
-                              ),
+                              title: Text(data['name']),
                               trailing: Text(
                                   "Score: " + data['highscore'].toString()),
                             ),
