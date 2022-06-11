@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import './questionsfile.dart';
 import './answersfile.dart';
@@ -12,6 +14,8 @@ class quiz extends StatelessWidget {
     required this.questionsquiz,
     required this.question_indexquiz,
   });
+  final _random = new Random();
+  int _randomindex = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,9 +32,9 @@ class quiz extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
           ),
-          questionsfile(
-              questionsquiz[question_indexquiz]['questiontext'] as String),
-          ...(questionsquiz[question_indexquiz]['answertext']
+          questionsfile(questionsquiz[_randomindex = _random.nextInt(10)]
+              ['questiontext'] as String),
+          ...(questionsquiz[_randomindex]['answertext']
                   as List<Map<String, Object>>)
               .map((ans) {
             return Answers(

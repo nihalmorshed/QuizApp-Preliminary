@@ -216,7 +216,7 @@ class _gameState extends State<game> {
           backgroundColor: Colors.orange,
           centerTitle: true,
         ),
-        body: _question_index < _questions.length
+        body: _question_index < 10
             ? quiz(
                 answersquiz: _answers,
                 question_indexquiz: _question_index,

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/getusername.dart';
 
 final firestoreInstance = FirebaseFirestore.instance;
 String name = '';
@@ -30,16 +29,6 @@ class _profileState extends State<profile> {
   }
 
   List<QueryDocumentSnapshot<Map<String, dynamic>>> docIds = [];
-
-  // Future getdocIds() async {
-  //   await FirebaseFirestore.instance
-  //       .collection('users')
-  //       .orderBy('highscore', descending: true)
-  //       .get()
-  //       .then((snapshot) => snapshot.docs.forEach((documents) {
-  //             docIds.add(documents.reference.id);
-  //           }));
-  // }
 
   @override
   Widget build(BuildContext context) {
