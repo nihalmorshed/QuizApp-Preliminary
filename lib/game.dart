@@ -154,15 +154,15 @@ class _gameState extends State<game> {
         {'text': 'Silvio Gazzaniga', 'score': 10}
       ],
     },
-    // {
-    //   'questiontext': ' Most Successful FIFA Cup Team?',
-    //   'answertext': [
-    //     {'text': 'Argentina', 'score': 0},
-    //     {'text': 'Germany', 'score': 0},
-    //     {'text': 'Italy', 'score': 0},
-    //     {'text': 'Brazil', 'score': 10}
-    //   ],
-    // },
+    {
+      'questiontext': ' Most Successful FIFA Cup Team?',
+      'answertext': [
+        {'text': 'Argentina', 'score': 0},
+        {'text': 'Germany', 'score': 0},
+        {'text': 'Italy', 'score': 0},
+        {'text': 'Brazil', 'score': 10}
+      ],
+    },
   ];
   var _question_index = 0;
   var _totalscore = 0;
@@ -187,19 +187,6 @@ class _gameState extends State<game> {
     setState(() {
       _updtqindex();
     });
-  }
-
-  String name = '';
-  @override
-  void initState() {
-    firestore.collection('QuizName').get().then((QuerySnapshot) => {
-          QuerySnapshot.docs.forEach((element) {
-            setState(() {
-              name = element['Name'];
-            });
-          })
-        });
-    super.initState();
   }
 
   @override

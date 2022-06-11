@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_complete_guide/home.dart';
 import 'package:flutter_complete_guide/profile.dart';
 import './login.dart';
 
@@ -23,7 +24,7 @@ class _Myappstate extends State<MyApp> {
   Widget build(BuildContext context) {
     // return loginregister();
     return MaterialApp(
-      home: loginregister(),
+      home: homescreen(),
     );
   }
 }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import './questionsfile.dart';
 import './answersfile.dart';
 
+Map<int, int> mp = Map();
+
 class quiz extends StatelessWidget {
   final List<Map<String, Object>> questionsquiz;
   final Function answersquiz;
@@ -15,7 +17,20 @@ class quiz extends StatelessWidget {
     required this.question_indexquiz,
   });
   final _random = new Random();
+
   int _randomindex = 0;
+  int generateUniqueRandom() {
+    int random = _random.nextInt(15);
+
+    if ((mp[random] ?? 0) > 0) {
+      random = generateUniqueRandom();
+    }
+    mp[random] = 1;
+    print(random);
+
+    return random;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +47,7 @@ class quiz extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
           ),
-          questionsfile(questionsquiz[_randomindex = _random.nextInt(10)]
+          questionsfile(questionsquiz[_randomindex = generateUniqueRandom()]
               ['questiontext'] as String),
           ...(questionsquiz[_randomindex]['answertext']
                   as List<Map<String, Object>>)
